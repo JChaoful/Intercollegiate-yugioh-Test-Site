@@ -1,6 +1,6 @@
-# Intercollegiate Yu-Gi-Oh! Website
+# Intercollegiate Yu-Gi-Oh! Website Test Site
 
-A website for the Intercollegiate Yu-Gi-Oh Championships.
+A testing copy of the website for the Intercollegiate Yu-Gi-Oh Championships.
 
 ## Testing and deploying the site
 
