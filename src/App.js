@@ -12,7 +12,7 @@ import {faBars} from "@fortawesome/free-solid-svg-icons";
 import {LinkContainer} from "react-router-bootstrap";
 import {NavLink} from "react-bootstrap";
 import logo from "./media/logo.png";
-import {BrowserView, MobileView} from 'react-device-detect';
+import {useMediaQuery, useMediaQueries} from '@react-hook/media-query'
 
 export function App() {
   /**
@@ -34,6 +34,7 @@ export function App() {
   // Translate code: https://javascript.plainenglish.io/how-to-make-a-simple-custom-drag-to-move-component-in-react-f67d5c99f925
   let navigate = useNavigate();
   let location = useLocation();
+  const isLargeDevice = useMediaQuery('only screen and (min-width: 600px)')
 
 	function prevPageIndex(currPageIndex) {
 		return (currPageIndex - 1) % pages.length;
@@ -133,7 +134,7 @@ export function App() {
           <Navbar className="navbar navbar-expand" fixed="top">
             <Navbar.Toggle aria-controls="basic-navbar-nav"><FontAwesomeIcon icon={faBars} /></Navbar.Toggle>
             <Navbar.Collapse id="basic-navbar-nav">
-							<BrowserView>
+							{isLargeDevice && 
 								<Nav id="links">
 									<LinkContainer activeClassName="active-page" to="/home">
 										<NavLink  bsPrefix="link" >Home</NavLink>
@@ -144,9 +145,8 @@ export function App() {
 									<LinkContainer activeClassName="active-page" to="/tournaments">
 										<NavLink bsPrefix="link">Past Tournaments</NavLink>
 									</LinkContainer>
-								</Nav>
-							</BrowserView>
-							<MobileView>
+								</Nav> }
+							{!isLargeDevice &&
 								<Nav id="links">
 									<LinkContainer activeClassName="active-page" to="/home">
 										<NavLink  bsPrefix="link" >Home</NavLink>
@@ -157,10 +157,9 @@ export function App() {
 									<LinkContainer activeClassName="active-page" to="/tournaments">
 										<NavLink bsPrefix="link">Past Tournaments</NavLink>
 									</LinkContainer>
-								</Nav>
-							</MobileView>
+								</Nav> }
             </Navbar.Collapse>
-						<BrowserView>
+						{isLargeDevice &&
 							<LinkContainer to="/">
 								<Navbar.Brand>
 									<img
@@ -169,8 +168,7 @@ export function App() {
 										alt="Intercollegiate Yugioh logo"
 									/>
 								</Navbar.Brand>
-							</LinkContainer>
-						</BrowserView>
+							</LinkContainer> }
 					</Navbar>
         </div>
       <div id="current-page">
